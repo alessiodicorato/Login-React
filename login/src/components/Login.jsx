@@ -8,9 +8,7 @@ export function Login() {
         email: '',
         password: ''
     })
-    const [error, setError] = useState(null)
-    const [message, setMessage] = useState(null)
-    const { isLoggedIn, setLoggedIn, setUserLogged } = useContext(UserContext)
+    const { login, error, message, setMessage } = useContext(UserContext)
     const navigate = useNavigate()
 
     function handleChange(event) {
@@ -22,23 +20,14 @@ export function Login() {
 
     function handleLogin(event) {
         event.preventDefault()
-        const userExists = users.find((u) => u.email === user.email && u.password === user.password)
-        if (userExists) {
-            setMessage("Login effettuato con successo")
-            setError(null)
-            localStorage.setItem("isLoggedIn", true)
-            setLoggedIn(true)
-            localStorage.setItem("user", JSON.stringify(userExists))
-            setUserLogged(userExists)
-            setTimeout(() => {navigate("/dashboard")}, 1000)
-        } else {
-            setMessage(null)
-            setError("Credenziali errate")
-            localStorage.setItem("isLoggedIn", false)
-            setLoggedIn(false)
-            localStorage.removeItem("user")
-            setUserLogged(null)
+        login(user.email, user.password)
+        if (!error) {
+            setTimeout(() => {
+                navigate("/dashboard")
+                setMessage(null)
+            }, 1000)
         }
+
     }
     
     return (

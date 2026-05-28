@@ -4,6 +4,7 @@ import { Login } from "./components/Login";
 import { Home } from "./components/Home";
 import { Layout } from "./components/Layout";
 import { Dashboard } from "./components/Dashboard";
+import { StepTwo } from "./components/Registrazione2";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "./context/UserContext";
@@ -17,10 +18,11 @@ function App() {
 		<>
 			<Routes>
 				<Route path="/" element={<Layout></Layout>}>
-          <Route index element={<Home></Home>}></Route>
+          			<Route index element={<Home></Home>}></Route>
 					<Route path="/login" element={<Login></Login>}></Route>
 					<Route path="/dashboard" element={isLoggedIn ? <Dashboard></Dashboard> : <Navigate to="/login"></Navigate>}></Route>
 					<Route path="/registrazione" element={<Registrazione></Registrazione>}></Route>
+					<Route path="/registrazionefine" element={<StepTwo></StepTwo>}></Route>
 				</Route>
 			</Routes>
 		</>
