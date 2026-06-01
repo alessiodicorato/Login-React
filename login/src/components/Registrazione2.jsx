@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext"
 
 export function StepTwo() {
     const [dati, setDati] = useState({eta: "", sesso: "m"})
-    const { user, setUser, register, error, message } = useContext(UserContext)
+    const { register, error, message } = useContext(UserContext)
 
 
     function handleChange(event) {
@@ -16,8 +16,7 @@ export function StepTwo() {
 
     async function handleRegistrati(event) {
         event.preventDefault()
-        setUser((prev) => ({...prev, ...dati}))
-        await register(user)
+        register(dati)
     }
 
     return (

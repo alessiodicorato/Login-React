@@ -12,14 +12,15 @@ export function UserProvider({ children }) {
 	const [message, setMessage] = useState(null);
 	const navigate = useNavigate();
 
-	async function register(user) {
+	function register(dati) {
 		try {
+			const finalUser = { ...dati, ...user }
 			const userExists = users.find((u) => u.email === user.email);
 			if (userExists) {
 				setError("Utente gia registrato");
 				setMessage(null);
 			} else {
-				setUsers((prev) => [...prev, user]);
+				setUsers((prev) => [...prev, finalUser]);
 				setError(null);
 				setMessage("Registrazione effettuata con successo");
 				setTimeout(() => {
