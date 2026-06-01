@@ -69,6 +69,10 @@ export function UserProvider({ children }) {
 		localStorage.setItem("users", JSON.stringify(users));
 	}, [users]);
 
+	useEffect(() => {
+		localStorage.setItem("user", JSON.stringify(userLogged));
+	}, [userLogged]);
+
 	return (
 		<UserContext.Provider
 			value={{
