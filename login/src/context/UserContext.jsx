@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const UserContext = createContext();
 
 export function UserProvider({ children }) {
-	const [users, setUsers] = useState(JSON.parse(localStorage.getItem("users")) || []);
+	const [users, setUsers] = useState(JSON.parse(localStorage.getItem("users")) || [{nome:"mario", cognome:"rossi", email:"ex@mail.com", password:"1234", sesso:"M", eta:"18" }]);
 	const [user, setUser] = useState({});
 	const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem("isLoggedIn") || false);
 	const [userLogged, setUserLogged] = useState(localStorage.getItem("user") || null);
@@ -25,6 +25,7 @@ export function UserProvider({ children }) {
 				setMessage("Registrazione effettuata con successo");
 				setTimeout(() => {
 					setMessage(null);
+					navigate("/login")
 				}, 2000);
 			}
 		} catch (error) {

@@ -3,7 +3,7 @@ import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 
 export function StepTwo() {
-    const [dati, setDati] = useState({eta: "", sesso: "m"})
+    const [dati, setDati] = useState({ eta: "", sesso: "m" })
     const { register, error, message } = useContext(UserContext)
 
 
@@ -27,6 +27,8 @@ export function StepTwo() {
                 <option value="f">F</option>
             </select>
             <button type="submit">Registrati</button>
+            {error && <p>{error}</p>}
+            {message && <p>{message}</p>}
         </form>
     )
 }
